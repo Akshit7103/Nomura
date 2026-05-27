@@ -1,0 +1,27 @@
+# Email Agent — runtime dependencies
+# ---------------------------------------------------------------------------
+# Requires: Python 3.11+
+#
+# The core batch pipeline (connector, classifier, storage, dedup, manifest,
+# synthetic generator) is pure standard library. The dependencies below are for
+# the service layer added on top: the mock Graph API, the GraphConnector, and
+# the FastAPI endpoints.
+#
+#   pip install -r requirements.txt
+# ---------------------------------------------------------------------------
+
+fastapi>=0.115.0          # HTTP API + mock Graph service
+uvicorn[standard]>=0.30.0 # ASGI server to run the FastAPI apps
+httpx>=0.27.0             # GraphConnector HTTP client (also used by tests)
+
+# --- Testing ---------------------------------------------------------------
+pytest>=8.2.0
+
+# --- Future (Phase 2 attachment extractor) ---------------------------------
+# NOT used yet. Uncomment when the attachment-content extractor is built.
+#
+# pdfplumber>=0.11.0      # PDF text + table extraction
+# openpyxl>=3.1.0         # .xlsx reading
+# python-docx>=1.1.0      # .docx reading
+# pytesseract>=0.3.10     # OCR for inline images (needs Tesseract installed)
+# Pillow>=10.3.0          # image handling for OCR
